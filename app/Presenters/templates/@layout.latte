@@ -1,0 +1,47 @@
+{**
+ * @param string   $basePath web base path
+ * @param array    $flashes  flash messages
+ *}
+
+{import 'components/form.latte'}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+	<title>{ifset title}{include title|stripHtml} | {/ifset} Kalendář akcí</title>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="{$basePath}/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="{$basePath}/css/style.css">
+	{block head}{/block}
+</head>
+
+<body>
+	<header class="jumbotron-fluid p5 bg-primary text-white">
+		<h1 class="display-2 text-center">Kalendář akcí</h1>
+	</header>
+	<main>
+		<div class=container>
+			<div n:foreach="$flashes as $flash" n:class="alert, 'alert-' . $flash->type">{$flash->message}</div>
+
+			{include content}
+		</div>
+	</main>
+	<footer class="p-5 bg-secondary"> 
+		<div class=container>
+			<div class="row">
+				<div class="col-sm-6"><img src="{$basePath}/img/skola-logo.png" alt="Logo školy" class="img-fluid"></div>
+				<div class="col-sm-6">&copy; 2020, Marek Lučný, SŠPU Opava</div>
+			</div>
+		</div>
+	</footer>
+	{block scripts}
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+	<script src="https://nette.github.io/resources/js/3/netteForms.min.js"></script>
+	<script src="{$basePath}/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script src="{$basePath}/js/main.js"></script>
+	{/block}
+</body>
+</html>
