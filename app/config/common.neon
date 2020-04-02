@@ -16,9 +16,9 @@ session:
 
 
 database:
-	dsn: 'mysql:host=127.0.0.1;dbname=test'
-	user:
-	password:
+	dsn: 'mysql:host=127.0.0.1;dbname=kalendar'
+	user: 'root'
+	password: ''
 	options:
 		lazy: yes
 
@@ -29,3 +29,7 @@ services:
 	- App\Forms\SignInFormFactory
 	- App\Forms\SignUpFormFactory
 	router: App\Router\RouterFactory::createRouter
+# Vypnutí cache pro Latté
+	latte.latteFactory:
+		setup:
+			- setTempDirectory(null)
