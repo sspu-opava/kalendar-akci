@@ -25,6 +25,7 @@ database:
 
 services:
 	- App\Model\UserManager
+	- App\Model\AkceManager
 	- App\Forms\FormFactory
 	- App\Forms\SignInFormFactory
 	- App\Forms\SignUpFormFactory
@@ -33,3 +34,6 @@ services:
 	latte.latteFactory:
 		setup:
 			- setTempDirectory(null)
+
+security:
+	debugger: true
