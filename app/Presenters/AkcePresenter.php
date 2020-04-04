@@ -26,14 +26,22 @@ final class AkcePresenter extends BasePresenter {
 
     public function renderList($order = 'datum DESC'): void {
         /* Na začátek stránky budou vypsány ladicí informace - o proměnné order */
-        Debugger:dump('Proměnná order: ', $order);
+        // Debugger:dump('Proměnná order: ', $order);
+        /* Příslušné šabloně (list.latte) bude předána proměnná $akceList (pole objektů), 
+        do níž budou díky metodě getAll() uloženy všechny záznamy o akcích 
+        uspořádané podle proměnné $order */
+        $this->template->akceList = $this->akceManager->getAll($order);
     }
 
     /* Metoda zajistí přípravu a rendrování stránky pro detail jedné akce */
 
     public function renderDetail($id): void {
         /* Do okna ve spodní liště bude vložena ladicí informace o stavu proměnné $id */
-        Debugger::barDump('Proměnná id: ', $id);        
+        // Debugger::barDump('Proměnná id: ', $id); 
+        /* Příslušné šabloně (detail.latte) bude předána proměnná $akce, 
+        do níž bude díky metodě getById() uložen záznam (objekt) o akci  
+        vybrané podle proměnné $id */
+        $this->template->akce = $this->akceManager->getById($id);
     }
 
     /* Metoda zajistí přípravu vložení nové akce a poté vyrendruje stránku s formulářem */

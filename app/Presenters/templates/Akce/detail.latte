@@ -1,6 +1,13 @@
 {* Šablona pro detail akce *}
 {block content}
-<h2 class="text-center">Detail akce</h2>
+<h2 class="text-center bg-secondary text-white p-3">Detail akce</h2>
+<h3>{$akce->nazev|upper}</h3>
+<p class="text-secondary">Kategorie: {$akce->kategorie}, datum konání: {$akce->datum|date:'j. n. Y'}</p>
+<p>{$akce->popis}</p>
+<p>Hodnocení: {$akce->hodnoceni} 
+{for $i = 1; $i <= floor($akce->hodnoceni); $i++ }<i class="fa fa-star" aria-hidden="true"></i>{/for}{if $akce->hodnoceni - floor($akce->hodnoceni) >= 0.5}<i class="fa fa-star-half" aria-hidden="true"></i>{/if}</p>
+<hr>
+<p><a n:href="list">Seznam akcí</a></p>
 {/block}
 
 {block scripts}

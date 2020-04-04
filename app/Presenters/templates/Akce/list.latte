@@ -1,6 +1,35 @@
 {* Šablona pro seznam akcí *}
 {block content}
-<h2 class="text-center">Seznam akcí</h2>
+<h2 class="text-center bg-secondary text-white p-3">Seznam akcí</h2>
+<table class="table table-striped table-inverse table-responsive">
+    <thead class="thead-inverse">
+        <tr>
+            {* Odkazy, pomocí kterých zajišťujeme změnu řazení záznamů podle hodnoty předávané do parametru $order *}
+            <th><a n:href="list 'nazev'">Název</a></th>
+            <th><a n:href="list 'datum DESC'">Datum</a></th>
+            <th><a n:href="list 'kategorie'">Kategorie</a></th>
+            <th><a n:href="list 'hodnoceni DESC'">Hodnocení</a></th>
+            <th>Operace</th>
+        </tr>
+        </thead>
+        <tbody>
+            {* Pro všechny prvky pole $akceList se opakuje výpis řádku tabulky. Aktuální hodnoty pro daný záznam obsahuje
+               proměnná-objekt $akce. Ke každému sloupci tabulky přistupujeme jako k atributu objektu: např. $akce->nazev *}
+            {foreach $akceList as $akce}
+            <tr>
+                <td scope="row"><a n:href="detail $akce->id_akce">{$akce->nazev}</a></td>
+                <td>{$akce->datum|date:'j. n. Y'}</td>
+                <td>{$akce->kategorie}</td>
+                <td>{$akce->hodnoceni}</td>
+                {* Odkazy, které směrují požadavky na metody update nebo delete v presenteru Akce. 
+                Jako parametr je v obou případech předávána jedinečná hodnota ze sloupce id_akce (primární klíč). *}
+                <td><a n:href="Akce:update $akce->id_akce" class="btn btn-success">Editovat</a> <a n:href="delete $akce->id_akce" class="btn btn-danger">Smazat</a></td>
+            </tr>
+            {/foreach}
+        </tbody>
+</table>
+{* Odkaz, který směruje požadavek na metodu insert v presenteru Akce. *}
+<p><a n:href="Akce:insert" class="btn btn-primary">Nová akce</a></p>
 {/block}
 
 {block scripts}
