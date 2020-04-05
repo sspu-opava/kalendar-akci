@@ -1,6 +1,11 @@
 {* Šablona pro aktualizaci akce *}
 {block content}
-<h2 class="text-center">Aktualizace akce</h2>
+<h2 class="text-center bg-secondary text-white p-3">Aktualizace akce</h2>
+{* Použití šablony form.latte pro zobrazení formuláře akceForm pomocí 
+  renderovací definice bootstrap4-form *}
+{import '../components/form.latte'}
+{include bootstrap4-form akceForm}
+{* control akceForm *}
 {/block}
 
 {block scripts}
